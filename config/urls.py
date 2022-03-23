@@ -17,6 +17,9 @@ urlpatterns = [
     # User management
     path("users/", include("reservas.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
+
+    path("api/", include("reservas.rooms.urls", namespace="rooms")),
+    path("api/", include("reservas.bookings.urls", namespace="bookings")),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
