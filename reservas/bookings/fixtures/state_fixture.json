@@ -1,0 +1,29 @@
+[
+  {
+    "model": "bookings.state",
+    "pk": "PEN",
+    "fields": {
+      "name": "Pendiente",
+      "created": "2018-09-01T13:20:30-04:00",
+      "modified": "2018-09-01T13:20:30-04:00"
+    }
+  },
+  {
+    "model": "bookings.state",
+    "pk": "PAG",
+    "fields": {
+      "name": "Pagado",
+      "created": "2018-09-01T13:20:30-04:00",
+      "modified": "2018-09-01T13:20:30-04:00"
+    }
+  },
+  {
+    "model": "bookings.state",
+    "pk": "ELI",
+    "fields": {
+      "name": "Eliminado",
+      "created": "2018-09-01T13:20:30-04:00",
+      "modified": "2018-09-01T13:20:30-04:00"
+    }
+  }
+]

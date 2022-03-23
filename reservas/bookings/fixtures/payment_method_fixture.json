@@ -1,0 +1,38 @@
+[
+  {
+    "model": "bookings.paymentmethod",
+    "pk": "EFE",
+    "fields": {
+      "name": "Efectivo",
+      "created": "2018-09-01T13:20:30-04:00",
+      "modified": "2018-09-01T13:20:30-04:00"
+    }
+  },
+  {
+    "model": "bookings.paymentmethod",
+    "pk": "PQR",
+    "fields": {
+      "name": "QR Simple",
+      "created": "2018-09-01T13:20:30-04:00",
+      "modified": "2018-09-01T13:20:30-04:00"
+    }
+  },
+  {
+    "model": "bookings.paymentmethod",
+    "pk": "TRA",
+    "fields": {
+      "name": "Deposito bancario",
+      "created": "2018-09-01T13:20:30-04:00",
+      "modified": "2018-09-01T13:20:30-04:00"
+    }
+  },
+  {
+    "model": "bookings.paymentmethod",
+    "pk": "CRE",
+    "fields": {
+      "name": "Tarjeta de crédito",
+      "created": "2018-09-01T13:20:30-04:00",
+      "modified": "2018-09-01T13:20:30-04:00"
+    }
+  }
+]
