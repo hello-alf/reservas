@@ -79,6 +79,9 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "reservas.users",
+    "reservas.rooms",
+    "reservas.customers",
+    "reservas.bookings"
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
