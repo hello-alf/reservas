@@ -1,4 +1,4 @@
-# Reservas
+# Reservas de Hoteles
 
 Proyecto reservas
 
@@ -6,10 +6,6 @@ Proyecto reservas
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 License: MIT
-
-## Settings
-
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
 
 ## Comandos básicos
 
@@ -33,18 +29,45 @@ Ejecutar los fixtures para llenar los estados y los métodos de pago iniciales
     $ docker-compose -f local.yml run --rm django python manage.py loaddata payment_method_fixture
     $ docker-compose -f local.yml run --rm django python manage.py loaddata state_fixture
 
-#### Running tests with pytest
 
-    $ pytest
+## EndPoints disponibles
 
-### Live reloading and Sass CSS compilation
+(GET) [Listado de habitaciones](http://localhost:8000/api/v1/rooms/).
 
-Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#sass-compilation-live-reloading).
+(POST) [Creacion de reservas](http://localhost:8000/api/v1/bookings/).
 
-## Deployment
+    Body example
+    {
+        "check_in_date": "2022-03-25",
+        "payment_method": "TRA",
+        "check_out_date": "2022-03-25",
+        "room": "5",
+        "state": "PAG",
+        "customer": {
+            "dni": "6828792",
+            "bill_to": "Quispe",
+            "first_name": "Juan",
+            "last_name": "Garcia"
+        }
+    }
 
-The following details how to deploy this application.
+    {
+        "check_in_date": "2022-03-25",
+        "check_out_date": "2022-03-25",
+        "room": "1",
+        "customer": {
+            "dni": "12351367842",
+            "bill_to": "Lopez"
+        }
+    }
 
+(PUT) [Listado de habitaciones](http://localhost:8000/api/v1/bookings/).
+
+    Body example
+    {
+        "customer": "6828793",
+        "booking": "d902295a-cef0-4b5b-a3a4-607a4c1e9746"
+    }
 ### Docker
 
 See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
