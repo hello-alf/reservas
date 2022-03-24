@@ -34,7 +34,7 @@ Ejecutar los fixtures para llenar los estados y los métodos de pago iniciales
 
 (GET) [Listado de habitaciones](http://localhost:8000/api/v1/rooms/).
 
-(POST) [Creacion de reservas](http://localhost:8000/api/v1/bookings/).
+(POST) [Creación de reservas](http://localhost:8000/api/v1/bookings/).
 
     Body example
     {
@@ -61,7 +61,7 @@ Ejecutar los fixtures para llenar los estados y los métodos de pago iniciales
         }
     }
 
-(PUT) [Listado de habitaciones](http://localhost:8000/api/v1/bookings/).
+(PUT) [Eliminación de reserva](http://localhost:8000/api/v1/bookings/).
 
     Body example
     {
