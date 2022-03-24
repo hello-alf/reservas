@@ -6,17 +6,18 @@ from rest_framework import serializers
 # Models
 from reservas.bookings.models import PaymentMethod, State, Booking
 from reservas.rooms.models import Room
+from reservas.customers.serializers.customer import CustomerSerializer
 from reservas.customers.models import Customer
-
 
 class BookingSerializer(serializers.Serializer):
     check_in_date = serializers.DateField()
     check_out_date = serializers.DateField()
     # payment_method = serializers.PrimaryKeyRelatedField(source='paymentmethod.payment_method_id')
     # state = serializers.PrimaryKeyRelatedField(source='state.state_id')
-    # room = serializers.PrimaryKeyRelatedField(source='room.room_id')
 
     room = serializers.PrimaryKeyRelatedField(queryset=Room.objects.all())
+
+    customer = CustomerSerializer(required=True)
 
     def validate(self, data):
         server_date = datetime.now()
@@ -40,4 +41,9 @@ class BookingSerializer(serializers.Serializer):
         return data
 
     def create(self, validated_data):
-        return Booking(**validated_data)
+        customer_data = validated_data.pop('customer')
+        obj, created = Customer.objects.get_or_create(
+            **customer_data
+        )
+        booking_instance = Booking.objects.create(customer=obj, **validated_data)
+        return booking_instance
