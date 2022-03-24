@@ -9,6 +9,7 @@ from reservas.rooms.models import Room
 from reservas.customers.serializers.customer import CustomerSerializer
 from reservas.customers.models import Customer
 
+
 class BookingSerializer(serializers.Serializer):
     check_in_date = serializers.DateField()
     check_out_date = serializers.DateField()
@@ -37,6 +38,13 @@ class BookingSerializer(serializers.Serializer):
             })
 
         # Validar disponibilidad de la habitacion en las fechas provistas por el cliente
+        is_available = Booking.objects.filter(room=data['room'],
+                                              check_in_date__lte=data['check_in_date'],
+                                              check_out_date__gte=data['check_out_date']).count()
+        if is_available > 0:
+            raise serializers.ValidationError({
+                'room': 'La habitacion se encuentra ocupada en la fecha seleccionada'
+            })
 
         return data
 

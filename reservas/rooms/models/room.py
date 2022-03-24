@@ -7,9 +7,9 @@ from reservas.utils.models import BookingAudit
 class Room (BookingAudit):
     room_id = models.AutoField(primary_key=True)
     # Room number
-    number = models.PositiveSmallIntegerField(default=1)
+    number = models.PositiveSmallIntegerField(default=1, help_text="Numero de habitacion")
     # Floor rooms
-    floor = models.PositiveSmallIntegerField(default=1)
+    floor = models.PositiveSmallIntegerField(default=1, help_text="Piso de la habitacion")
     # name rooms
     name = models.CharField(max_length=150, blank=False, null=False)
     # Description rooms
