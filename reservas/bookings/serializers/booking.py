@@ -4,10 +4,12 @@ from datetime import datetime, date
 from rest_framework import serializers
 
 # Models
-from reservas.bookings.models import PaymentMethod, State, Booking
 from reservas.rooms.models import Room
-from reservas.customers.serializers.customer import CustomerSerializer
 from reservas.customers.models import Customer
+
+# Serializers
+from reservas.bookings.models import PaymentMethod, State, Booking
+from reservas.customers.serializers.customer import CustomerSerializer
 
 
 class BookingSerializer(serializers.Serializer):
@@ -43,7 +45,8 @@ class BookingSerializer(serializers.Serializer):
         # Validar disponibilidad de la habitacion en las fechas provistas por el cliente
         is_available = Booking.objects.filter(room=data['room'],
                                               check_in_date__lte=data['check_in_date'],
-                                              check_out_date__gte=data['check_out_date']).count()
+                                              check_out_date__gte=data['check_out_date'],
+                                              state_id__in=['PEN', 'PAG']).count()
 
         if is_available > 0:
             raise serializers.ValidationError({
@@ -74,9 +77,10 @@ class BookingSerializer(serializers.Serializer):
     def create(self, validated_data):
         customer_data = validated_data.pop('customer')
         # Creamos al cliente nuevo si no existiese
-        obj, created = Customer.objects.get_or_create(
-            **customer_data
-        )
+        try:
+            obj = Customer.objects.get(dni=customer_data['dni'])
+        except Booking.DoesNotExist:
+            obj = Customer.objects.create(**customer_data)
         # Creamos la reserva
         booking_instance = Booking.objects.create(customer=obj, amount=self.context['amount'], **validated_data)
         return booking_instance

@@ -8,17 +8,10 @@ from reservas.rooms.serializers import RoomSerializer
 
 
 @api_view(['GET'])
-@authentication_classes([]) # Add this
-@permission_classes([]) # Maybe add this too
+@authentication_classes([])
+@permission_classes([])
 def list_rooms(request):
     rooms = Room.objects.all()
     serializer = RoomSerializer(rooms, many=True)
     return Response(serializer.data)
 
-
-# @api_view(['POST'])
-# def create_rooms(request):
-#     serializer = CreateRoomSerializer(data=request.data)
-#     serializer.is_valid(raise_exception=True)
-#     data = serializer.data
-#     return Response(serializer.data)
